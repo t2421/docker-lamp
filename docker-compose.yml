@@ -1,0 +1,24 @@
+version: '3'
+services:
+  project1:
+    build: ./docker/php
+    volumes:
+      - ./src/project1:/var/www/html
+    ports:
+      - 8888:80
+  project2:
+    build: ./docker/php
+    volumes:
+      - ./src/project2:/var/www/html
+    ports:
+      - 8889:80
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - 3306:3306
+    volumes:
+      - dbdata:/var/lib/mysql
+volumes:
+  dbdata:
